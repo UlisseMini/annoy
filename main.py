@@ -1,5 +1,4 @@
 import os
-from rich import print
 import httpx
 from datetime import datetime
 
