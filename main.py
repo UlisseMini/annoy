@@ -29,8 +29,6 @@ else:
         # TODO: Summary + journal link instead(?)
         msg += f"\nJournal: {day['Journal']}"
 
-msg = ":green_square: Uli got up early, meditated an hour, and did all his other habits today! Yay!"
-msg += f"\nJournal entry: {day['Journal']}"
 
 resp = httpx.post(f'{WEBHOOK_URL}', data={'content': msg})
 resp.raise_for_status()
