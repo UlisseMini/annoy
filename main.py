@@ -1,8 +1,8 @@
 import os
 import httpx
-from datetime import datetime
+from datetime import datetime, timedelta
 
-TODAY = datetime.now().strftime('%Y-%m-%d')
+YESTERDAY = (datetime.now() - timedelta(days=1)).strftime('%Y-%m-%d')
 AIRTABLE_URL="https://api.airtable.com/v0/appq1TYckaWsk1tgt"
 AIRTABLE_API_KEY=os.environ['AIRTABLE_API_KEY']
 WEBHOOK_URL=os.environ['WEBHOOK_URL']
@@ -17,7 +17,8 @@ resp.raise_for_status()
 day = resp.json()["records"][0]["fields"]
 
 msg = ''
-if day['Date'] != TODAY:
+# this is ran the following day at 3am or something
+if day['Date'] != YESTERDAY:
     msg += ":red_square: Uli didn't journal today! Ask him why! Yell at him! @everyone"
 else:
     # TODO: Get habits data from airtable, don't rely on EVERYTHING cruch
