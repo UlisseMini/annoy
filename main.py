@@ -23,13 +23,13 @@ if day['Date'] != YESTERDAY:
 else:
     # TODO: Get habits data from airtable, don't rely on EVERYTHING cruch
     if 'EVERYTHING' not in day['Daily']:
-        msg += ":red_square: Uli didn't do everything today! Ask him why! Yell at him! @everyone"
+        msg += ":yellow_square: Uli didn't complete all his habits, oh well. at least he journaled."
     else:
-        msg += ":green_square: Uli got up early, meditated an hour, and did all his other habits today! Yay!"
-        # TODO: Summary + journal link instead(?)
-        msg += f"\nJournal: {day['Journal']}"
+        msg += ":green_square: Uli got up early, meditated, and did all his other habits today! Yay!"
+    msg += f"\n\n{day['Journal']}"
 
 
+print(msg)
 resp = httpx.post(f'{WEBHOOK_URL}', data={'content': msg})
 resp.raise_for_status()
 print(resp.text)
