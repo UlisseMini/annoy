@@ -21,11 +21,12 @@ msg = ''
 if day['Date'] != YESTERDAY:
     msg += ":red_square: Uli didn't journal today! Ask him why! Yell at him! @everyone"
 else:
+    date = day["Date"]
     # TODO: Get habits data from airtable, don't rely on EVERYTHING cruch
-    if 'EVERYTHING' not in day['Daily']:
-        msg += ":yellow_square: Uli didn't complete all his habits, oh well. at least he journaled."
+    if 'Daily' not in day or 'EVERYTHING' not in day['Daily']:
+        msg += f":yellow_square: ({date}) Uli didn't complete all his habits, oh well. at least he journaled."
     else:
-        msg += ":green_square: Uli got up early, meditated, and did all his other habits today! Yay!"
+        msg += f":green_square: ({date}) Uli got up early, meditated, and did all his other habits today! Yay!"
     msg += f"\n\n{day['Journal']}"
 
 
