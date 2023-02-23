@@ -1,0 +1,3 @@
+# Must submit by 6am EST <=> 3am PST <=> 11am UTC
+0 11 * * * sh -c "cd /home/uli/annoy && . ./.env && python main.py journal"
+
